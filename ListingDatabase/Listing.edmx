@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgentContact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgentCreateDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgentListing">
+          <Key>
+            <PropertyRef Name="AgentListingId" />
+          </Key>
+          <Property Name="AgentListingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentId" Type="int" />
+          <Property Name="LisitngId" Type="int" />
+          <Property Name="OpenHouseId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateUpdated" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Listing">
+          <Key>
+            <PropertyRef Name="Listing_Id" />
+          </Key>
+          <Property Name="Listing_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListingCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="ListingName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ListingAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ListingDate" Type="datetime" />
+          <Property Name="ListingCreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="OpenHouseSlot">
+          <Key>
+            <PropertyRef Name="OpenHouseId" />
+          </Key>
+          <Property Name="OpenHouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpenHouseDateBegin" Type="datetime" />
+          <Property Name="OpenHouseDateEnd" Type="datetime" />
+          <Property Name="OpenHouseCreatedDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgentListing_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="AgentListing">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgentListing_Listing">
+          <End Role="Listing" Type="Self.Listing" Multiplicity="0..1" />
+          <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Listing">
+              <PropertyRef Name="Listing_Id" />
+            </Principal>
+            <Dependent Role="AgentListing">
+              <PropertyRef Name="LisitngId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgentListing" EntityType="Self.AgentListing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Listing" EntityType="Self.Listing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpenHouseSlot" EntityType="Self.OpenHouseSlot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AgentListing_Agent" Association="Self.FK_AgentListing_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="AgentListing" EntitySet="AgentListing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgentListing_Listing" Association="Self.FK_AgentListing_Listing">
+            <End Role="Listing" EntitySet="Listing" />
+            <End Role="AgentListing" EntitySet="AgentListing" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="AgentId" />
+          </Key>
+          <Property Name="AgentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgentContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgentCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AgentListings" Relationship="Self.FK_AgentListing_Agent" FromRole="Agent" ToRole="AgentListing" />
+        </EntityType>
+        <EntityType Name="AgentListing">
+          <Key>
+            <PropertyRef Name="AgentListingId" />
+          </Key>
+          <Property Name="AgentListingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int32" />
+          <Property Name="LisitngId" Type="Int32" />
+          <Property Name="OpenHouseId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_AgentListing_Agent" FromRole="AgentListing" ToRole="Agent" />
+          <NavigationProperty Name="Listing" Relationship="Self.FK_AgentListing_Listing" FromRole="AgentListing" ToRole="Listing" />
+        </EntityType>
+        <EntityType Name="Listing">
+          <Key>
+            <PropertyRef Name="Listing_Id" />
+          </Key>
+          <Property Name="Listing_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListingCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ListingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ListingAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListingDate" Type="DateTime" Precision="3" />
+          <Property Name="ListingCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="AgentListings" Relationship="Self.FK_AgentListing_Listing" FromRole="Listing" ToRole="AgentListing" />
+        </EntityType>
+        <EntityType Name="OpenHouseSlot">
+          <Key>
+            <PropertyRef Name="OpenHouseId" />
+          </Key>
+          <Property Name="OpenHouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpenHouseDateBegin" Type="DateTime" Precision="3" />
+          <Property Name="OpenHouseDateEnd" Type="DateTime" Precision="3" />
+          <Property Name="OpenHouseCreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AgentListing_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="AgentId" />
+            </Principal>
+            <Dependent Role="AgentListing">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgentListing_Listing">
+          <End Role="Listing" Type="Self.Listing" Multiplicity="0..1" />
+          <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Listing">
+              <PropertyRef Name="Listing_Id" />
+            </Principal>
+            <Dependent Role="AgentListing">
+              <PropertyRef Name="LisitngId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Agents" EntityType="Self.Agent" />
+          <EntitySet Name="AgentListings" EntityType="Self.AgentListing" />
+          <EntitySet Name="Listings" EntityType="Self.Listing" />
+          <EntitySet Name="OpenHouseSlots" EntityType="Self.OpenHouseSlot" />
+          <AssociationSet Name="FK_AgentListing_Agent" Association="Self.FK_AgentListing_Agent">
+            <End Role="Agent" EntitySet="Agents" />
+            <End Role="AgentListing" EntitySet="AgentListings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgentListing_Listing" Association="Self.FK_AgentListing_Listing">
+            <End Role="Listing" EntitySet="Listings" />
+            <End Role="AgentListing" EntitySet="AgentListings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities">
+          <EntitySetMapping Name="Agents">
+            <EntityTypeMapping TypeName="testModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="AgentCode" ColumnName="AgentCode" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="AgentContact" ColumnName="AgentContact" />
+                <ScalarProperty Name="AgentCreateDate" ColumnName="AgentCreateDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgentListings">
+            <EntityTypeMapping TypeName="testModel.AgentListing">
+              <MappingFragment StoreEntitySet="AgentListing">
+                <ScalarProperty Name="AgentListingId" ColumnName="AgentListingId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="LisitngId" ColumnName="LisitngId" />
+                <ScalarProperty Name="OpenHouseId" ColumnName="OpenHouseId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Listings">
+            <EntityTypeMapping TypeName="testModel.Listing">
+              <MappingFragment StoreEntitySet="Listing">
+                <ScalarProperty Name="Listing_Id" ColumnName="Listing_Id" />
+                <ScalarProperty Name="ListingCode" ColumnName="ListingCode" />
+                <ScalarProperty Name="ListingName" ColumnName="ListingName" />
+                <ScalarProperty Name="ListingAddress" ColumnName="ListingAddress" />
+                <ScalarProperty Name="ListingDate" ColumnName="ListingDate" />
+                <ScalarProperty Name="ListingCreatedBy" ColumnName="ListingCreatedBy" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpenHouseSlots">
+            <EntityTypeMapping TypeName="testModel.OpenHouseSlot">
+              <MappingFragment StoreEntitySet="OpenHouseSlot">
+                <ScalarProperty Name="OpenHouseId" ColumnName="OpenHouseId" />
+                <ScalarProperty Name="OpenHouseDateBegin" ColumnName="OpenHouseDateBegin" />
+                <ScalarProperty Name="OpenHouseDateEnd" ColumnName="OpenHouseDateEnd" />
+                <ScalarProperty Name="OpenHouseCreatedDate" ColumnName="OpenHouseCreatedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

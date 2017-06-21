@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities">
+    <EntitySetMapping Name="Agents">
+      <EntityTypeMapping TypeName="testModel.Agent">
+        <MappingFragment StoreEntitySet="Agent">
+          <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+          <ScalarProperty Name="AgentCode" ColumnName="AgentCode" />
+          <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+          <ScalarProperty Name="AgentContact" ColumnName="AgentContact" />
+          <ScalarProperty Name="AgentCreateDate" ColumnName="AgentCreateDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgentListings">
+      <EntityTypeMapping TypeName="testModel.AgentListing">
+        <MappingFragment StoreEntitySet="AgentListing">
+          <ScalarProperty Name="AgentListingId" ColumnName="AgentListingId" />
+          <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+          <ScalarProperty Name="LisitngId" ColumnName="LisitngId" />
+          <ScalarProperty Name="OpenHouseId" ColumnName="OpenHouseId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Listings">
+      <EntityTypeMapping TypeName="testModel.Listing">
+        <MappingFragment StoreEntitySet="Listing">
+          <ScalarProperty Name="Listing_Id" ColumnName="Listing_Id" />
+          <ScalarProperty Name="ListingCode" ColumnName="ListingCode" />
+          <ScalarProperty Name="ListingName" ColumnName="ListingName" />
+          <ScalarProperty Name="ListingAddress" ColumnName="ListingAddress" />
+          <ScalarProperty Name="ListingDate" ColumnName="ListingDate" />
+          <ScalarProperty Name="ListingCreatedBy" ColumnName="ListingCreatedBy" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OpenHouseSlots">
+      <EntityTypeMapping TypeName="testModel.OpenHouseSlot">
+        <MappingFragment StoreEntitySet="OpenHouseSlot">
+          <ScalarProperty Name="OpenHouseId" ColumnName="OpenHouseId" />
+          <ScalarProperty Name="OpenHouseDateBegin" ColumnName="OpenHouseDateBegin" />
+          <ScalarProperty Name="OpenHouseDateEnd" ColumnName="OpenHouseDateEnd" />
+          <ScalarProperty Name="OpenHouseCreatedDate" ColumnName="OpenHouseCreatedDate" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

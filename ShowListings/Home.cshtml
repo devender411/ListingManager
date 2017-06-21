@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html data-ng-app="App">
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="styles/styles.css" rel="stylesheet" type="type/css">
+</head>
+
+<body>
+
+    <div class="container">
+       
+            <ul class="nav nav-tabs">
+                <li><a href="#AgentListings">AgentListings</a> </li>
+                <li><a href="#">Listings </a></li>
+            </ul>
+
+
+    </div>
+
+    <div ng-view></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+
+    <script src="~/App/app.js"></script>
+    <script src="~/App/Controllers/ListingsController.js"></script>
+    <script src="~/App/Services/apiService.js"></script>
+    <script src="~/App/Controllers/AgentListingsController.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyListingAPI", "PropertyListingAPI\PropertyListingAPI.csproj", "{B7B8AB8C-14CC-4A1D-A324-EC922978A166}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListingDatabase", "ListingDatabase\ListingDatabase.csproj", "{2213CC9F-865A-4B11-A223-A1EB2D4C7951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowListings", "ShowListings\ShowListings.csproj", "{75479020-D89D-4B12-A2FC-40FAA50B4D7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7B8AB8C-14CC-4A1D-A324-EC922978A166}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B8AB8C-14CC-4A1D-A324-EC922978A166}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{B7B8AB8C-14CC-4A1D-A324-EC922978A166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B8AB8C-14CC-4A1D-A324-EC922978A166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2213CC9F-865A-4B11-A223-A1EB2D4C7951}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{2213CC9F-865A-4B11-A223-A1EB2D4C7951}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{2213CC9F-865A-4B11-A223-A1EB2D4C7951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2213CC9F-865A-4B11-A223-A1EB2D4C7951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75479020-D89D-4B12-A2FC-40FAA50B4D7F}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{75479020-D89D-4B12-A2FC-40FAA50B4D7F}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{75479020-D89D-4B12-A2FC-40FAA50B4D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75479020-D89D-4B12-A2FC-40FAA50B4D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

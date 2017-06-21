@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentId" />
+    </Key>
+    <Property Name="AgentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="AgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AgentContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AgentCreateDate" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AgentListings" Relationship="Self.FK_AgentListing_Agent" FromRole="Agent" ToRole="AgentListing" />
+  </EntityType>
+  <EntityType Name="AgentListing">
+    <Key>
+      <PropertyRef Name="AgentListingId" />
+    </Key>
+    <Property Name="AgentListingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AgentId" Type="Int32" />
+    <Property Name="LisitngId" Type="Int32" />
+    <Property Name="OpenHouseId" Type="Int32" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Agent" Relationship="Self.FK_AgentListing_Agent" FromRole="AgentListing" ToRole="Agent" />
+    <NavigationProperty Name="Listing" Relationship="Self.FK_AgentListing_Listing" FromRole="AgentListing" ToRole="Listing" />
+  </EntityType>
+  <EntityType Name="Listing">
+    <Key>
+      <PropertyRef Name="Listing_Id" />
+    </Key>
+    <Property Name="Listing_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ListingCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ListingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ListingAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ListingDate" Type="DateTime" Precision="3" />
+    <Property Name="ListingCreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="AgentListings" Relationship="Self.FK_AgentListing_Listing" FromRole="Listing" ToRole="AgentListing" />
+  </EntityType>
+  <EntityType Name="OpenHouseSlot">
+    <Key>
+      <PropertyRef Name="OpenHouseId" />
+    </Key>
+    <Property Name="OpenHouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OpenHouseDateBegin" Type="DateTime" Precision="3" />
+    <Property Name="OpenHouseDateEnd" Type="DateTime" Precision="3" />
+    <Property Name="OpenHouseCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AgentListing_Agent">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+    <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentId" />
+      </Principal>
+      <Dependent Role="AgentListing">
+        <PropertyRef Name="AgentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AgentListing_Listing">
+    <End Role="Listing" Type="Self.Listing" Multiplicity="0..1" />
+    <End Role="AgentListing" Type="Self.AgentListing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Listing">
+        <PropertyRef Name="Listing_Id" />
+      </Principal>
+      <Dependent Role="AgentListing">
+        <PropertyRef Name="LisitngId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testEntities" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="Agents" EntityType="Self.Agent" />
+    <EntitySet Name="AgentListings" EntityType="Self.AgentListing" />
+    <EntitySet Name="Listings" EntityType="Self.Listing" />
+    <EntitySet Name="OpenHouseSlots" EntityType="Self.OpenHouseSlot" />
+    <AssociationSet Name="FK_AgentListing_Agent" Association="Self.FK_AgentListing_Agent">
+      <End Role="Agent" EntitySet="Agents" />
+      <End Role="AgentListing" EntitySet="AgentListings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AgentListing_Listing" Association="Self.FK_AgentListing_Listing">
+      <End Role="Listing" EntitySet="Listings" />
+      <End Role="AgentListing" EntitySet="AgentListings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
