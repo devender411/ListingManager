@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PropertyListingAPI</name>
+    </assembly>
+    <members>
+        <member name="M:PropertyListingAPI.Controllers.AgentListingsController.Listings">
+            <summary>
+            gets agent listings 
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

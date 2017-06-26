@@ -45,3 +45,7 @@ C:\reddy\Projects\ListingManager\PropertyListingAPI\bin\System.Web.Http.WebHost.
 C:\reddy\Projects\ListingManager\PropertyListingAPI\obj\Release\PropertyListingAPI.csprojResolveAssemblyReference.cache
 C:\reddy\Projects\ListingManager\PropertyListingAPI\obj\Release\PropertyListingAPI.dll
 C:\reddy\Projects\ListingManager\PropertyListingAPI\obj\Release\PropertyListingAPI.pdb
+C:\reddy\Projects\ListingManager\PropertyListingAPI\bin\Microsoft.Web.Infrastructure.dll
+C:\reddy\Projects\ListingManager\PropertyListingAPI\bin\Swashbuckle.Core.dll
+C:\reddy\Projects\ListingManager\PropertyListingAPI\bin\WebActivatorEx.dll
+C:\reddy\Projects\ListingManager\PropertyListingAPI\bin\PropertyListingAPI.XML
